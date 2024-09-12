@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/show_cart.css' %}">
+{% endblock %}
+{% block content %}
+<div class="cart-container">
+    <h1>Your Cart</h1>
+
+    <div class="cart-items">
+        <h2>Items in Your Cart</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.product.price }}</td>
+                    <td>${{ item.total_price }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Cart Total Section -->
+    <div class="cart-total">
+        <h2>Cart Total</h2>
+        <p>Total: <strong>${{ cart_total }}</strong></p>
+    </div>
+
+    <!-- Address Section -->
+    <div class="address-section">
+        <h2>Choose Your Address</h2>
+        <form action="{% url 'submit_order' %}" method="POST">
+            {% csrf_token %}
+            <label for="address">Shipping Address:</label>
+            <select name="address" id="address" required>
+                {% for address in addresses %}
+                <option value="{{address.id}}">{{ address.title }}: {{ address.city }}, {{ address.description }}</option>
+                {% endfor %}
+            </select>
+    <div class="shipping-method">
+        <h2>Choose Shipping Method</h2>
+        <form action="{% url 'submit_order' %}" method="POST">
+            {% csrf_token %}
+            <label for="shipping">Shipping Method:</label>
+            <select name="post_id" id="shipping" required>
+                {% for method in shipping_methods %}
+                <option value="{{ method.id }}">{{ method.name }} - {{method.cost}}</option>
+                {% endfor %}
+            </select>
+
+
+    </div>
+            <!-- Add Address Button -->
+            <div class="add-address">
+                <a href="{% url 'add_address' %}" class="btn btn-primary add-address-btn">
+                    <i class="fas fa-plus"></i> Add New Address
+                </a>
+            </div>
+
+            <!-- Submit Order Button -->
+            <button type="submit" class="submit-order-btn">
+                <i class="fas fa-check"></i> Submit Order
+            </button>
+        </form>
+    </div>
+</div>
+{%endblock%}

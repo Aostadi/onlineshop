@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container">
+            <a href="{% url 'home' %}" class="logo">My Online Shop</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'product_list' %}">Products</a></li>
+                <li><a href="{%url 'cart'%}">Cart</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{%url 'show_orders'%}">orders</a></li>
+                    <form method="post" action="{% url 'logout' %}">{%csrf_token%}<li><button type="submit">logout</button></li></form>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+
+                    <li><a href="{% url 'signup' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        <!-- Page-specific content goes here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Online Shop</p>
+    </footer>
+</body>
+</html>
