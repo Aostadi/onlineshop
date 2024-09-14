@@ -12,9 +12,12 @@ class Cart(models.Model):
         if self.lines.filter(product=product):
             product_line = self.lines.get(product=product)
             product_line.quantity += int(qty)
+	    product_line.total_price = int(qty)*int(product.price)
             product_line.save()
+   
         else:
-            product_line = self.lines.create(product=product, quantity=qty)
+            product_line = self.lines.create(product=product, quantity=qty, total_price=int(product.price)*int(qty))
+	product_line
         return product_line
 
     def cart_total(self):

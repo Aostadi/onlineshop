@@ -19,11 +19,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from product.views import home
-
+from django.shortcuts import redirect
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lambda r: redirect('home')),	
     path('home/', home, name='home'),
     path('product/', include('product.urls')),
     path('accounts/', include('django.contrib.auth.urls'), name='login'),
