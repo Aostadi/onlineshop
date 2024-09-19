@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+    {% load i18n %}	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
@@ -14,17 +15,31 @@
         <div class="container">
             <a href="{% url 'home' %}" class="logo">My Online Shop</a>
             <ul class="nav-links">
-                <li><a href="{% url 'product_list' %}">Products</a></li>
-                <li><a href="{%url 'cart'%}">Cart</a></li>
+                <li><a href="{% url 'product_list' %}">{% translate "Products"%}</a></li>
+                <li><a href="{%url 'cart'%}">{% translate "Cart"%}</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{%url 'show_orders'%}">orders</a></li>
-                    <form method="post" action="{% url 'logout' %}">{%csrf_token%}<li><button type="submit">logout</button></li></form>
+                    <li><a href="{%url 'show_orders'%}">{% translate "orders"%}</a></li>
+                    <form method="post" action="{% url 'logout' %}">{%csrf_token%}<li><button type="submit">{% translate "logout"%}</button></li></form>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'login' %}">{% translate "Login"%}</a></li>
 
-                    <li><a href="{% url 'signup' %}">Register</a></li>
+                    <li><a href="{% url 'signup' %}">{% translate "Register"%}</a></li>
                 {% endif %}
-            </ul>
+		|<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+		    <input name="next" type="hidden" value="{{ redirect_to }}">
+		    <select name="language">
+		        {% get_current_language as LANGUAGE_CODE %}
+		        {% get_available_languages as LANGUAGES %}
+		        {% get_language_info_list for LANGUAGES as languages %}
+		        {% for language in languages %}
+			            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+	                	{{ language.name_local }} ({{ language.code }})
+        			    </option>
+		        {% endfor %}
+		    </select>
+			    <input type="submit" value="{% translate "Go"%}">
+		</form>            
+	</ul>
         </div>
     </nav>
 

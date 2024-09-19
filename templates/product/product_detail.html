@@ -44,25 +44,4 @@
     </div>
 </div>
 
-<!-- Comment Section -->
-<div class="comment-section">
-    <h2>Reviews:</h2>
-    <ul>
-        {% for comment in comments %}
-        <li>
-            <strong>{{ comment.user }}</strong>: {{ comment.text }}
-            <small>({{ comment.created_at|date:"M d, Y" }})</small>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <!-- Leave a Comment Form -->
-    <h3>Leave a comment:</h3>
-    <form method="POST">
-        {% csrf_token %}
-        {# form_comment.as_p #}
-        <textarea name="comment" rows="4" required></textarea>
-        <button type="submit" class="btn btn-secondary">Submit</button>
-    </form>
-</div>
 {% endblock %}

@@ -25,6 +25,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda r: redirect('home')),	
+    path("i18n/", include("django.conf.urls.i18n")),
     path('home/', home, name='home'),
     path('product/', include('product.urls')),
     path('accounts/', include('django.contrib.auth.urls'), name='login'),

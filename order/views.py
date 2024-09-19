@@ -20,14 +20,15 @@ def submit_order(request):
     if request.method == 'POST':
         cart = Cart.objects.get(id=cart_id)
         cart_items = cart.lines.all()
-        cart_total = cart.cart_total()
         address_id = request.POST.get("address")
-        post = Post.objects.all()
+        post = Post.objects.get(id=request.POST.get("post_id"))
+        cart_total = int(cart.cart_total()) + int(post.cost)
+
         Order.objects.create(
             user=user,
             products=cart,
             address=Address.objects.get(id=address_id),
-            post=Post.objects.get(id=request.POST.get("post_id"))
+            post=post
         )
         return render(request,
                       'product/submit_order.html',

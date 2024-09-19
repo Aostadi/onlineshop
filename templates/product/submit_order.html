@@ -17,6 +17,7 @@
             <li>{{ item.product.name }} (x{{ item.quantity }}) - ${{ item.total_price }}</li>
             {% endfor %}
         </ul>
+	<p>+ postcost :{{posts.cost}}</p>
         <p><strong>Total: ${{ cart_total }}</strong></p>
     </div>
     <form action="{% url 'payment'%}">
@@ -24,7 +25,7 @@
             <h2>Payment</h2>
             <p>Select your payment method when you submit the order.</p>
         </div>
-        <button type="submit" class="submit-order-btn">Pey</button>
+        <button type="submit" class="submit-order-btn">Pay</button>
     </form>
 </div>
 {% endblock %}
