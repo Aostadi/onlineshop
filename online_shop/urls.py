@@ -18,6 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+<<<<<<< HEAD
+=======
+from online_shop import local_settings
+>>>>>>> 35b2c6c (upload project file)
 from product.views import home
 from django.shortcuts import redirect
 from django.conf import settings
@@ -35,3 +39,9 @@ urlpatterns = [
     path('shipping/', include('shipping.urls')),
     path('payment/', include('payment.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+<<<<<<< HEAD
+=======
+handler404 = 'errors.views.custom_404'
+if not local_settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+>>>>>>> 35b2c6c (upload project file)

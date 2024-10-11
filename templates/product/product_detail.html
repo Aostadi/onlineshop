@@ -27,8 +27,13 @@
         <div class="product-attributes">
             <h3>Attributes:</h3>
             <ul>
+<<<<<<< HEAD
                 {% for attribute in product.attribute.all %}
                 <li>{{ attribute.attribute.name }}: {{ attribute.value }}</li>
+=======
+                {% for attribute in product.attributes.all %}
+                <li>{{ attribute.attribute.name}}: {{ attribute.value }} {{ attribute.unit }}</li>
+>>>>>>> 35b2c6c (upload project file)
                 {% endfor %}
             </ul>
         </div>

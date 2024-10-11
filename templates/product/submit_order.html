@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 {% load static %}
 
@@ -29,3 +30,36 @@
     </form>
 </div>
 {% endblock %}
+=======
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/submit_order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="submit-order-container">
+    <h1>Submit Your Order</h1>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <ul>
+            {% for item in cart_items %}
+            <li>{{ item.product.name }} (x{{ item.quantity }}) - ${{ item.total_price }}</li>
+            {% endfor %}
+        </ul>
+	<p>+ postcost :{{posts.cost}}</p>
+        <p><strong>Total: ${{ cart_total }}</strong></p>
+    </div>
+    <form action="{% url 'payment'%}">
+        <div class="payment-section">
+            <h2>Payment</h2>
+            <p>Select your payment method when you submit the order.</p>
+        </div>
+        <button type="submit" class="submit-order-btn">Pay</button>
+    </form>
+</div>
+{% endblock %}
+>>>>>>> 35b2c6c (upload project file)
