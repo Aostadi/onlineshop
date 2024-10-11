@@ -19,11 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-                {% for item in cart_items %}
-=======
                 {% for item in cart.items %}
->>>>>>> 35b2c6c (upload project file)
                 <tr>
                     <td>{{ item.product.name }}</td>
                     <td>{{ item.quantity }}</td>
@@ -37,11 +33,7 @@
     <!-- Cart Total Section -->
     <div class="cart-total">
         <h2>Cart Total</h2>
-<<<<<<< HEAD
-        <p>Total: <strong>${{ cart_total }}</strong></p>
-=======
         <p>Total: <strong>${{ cart.total_price }}</strong></p>
->>>>>>> 35b2c6c (upload project file)
     </div>
 
     <!-- Address Section -->

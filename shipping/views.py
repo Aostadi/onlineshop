@@ -1,15 +1,9 @@
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
-from django.shortcuts import render, redirect
-from django.views.decorators.http import require_http_methods
-
-=======
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
 from cart.models import Cart
->>>>>>> 35b2c6c (upload project file)
 from .forms import AddAddressForm
 from .models import Address
 from order.models import Post

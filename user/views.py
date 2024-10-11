@@ -24,10 +24,7 @@ class CreateUserForm(UserCreationForm):
         self.fields['password2'].help_text = ''
         self.fields['username'].help_text =''
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 35b2c6c (upload project file)
 class SignUpView(CreateView):
     form_class = CreateUserForm
     success_url = reverse_lazy("login")

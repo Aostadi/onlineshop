@@ -5,15 +5,9 @@ ALLOWED_HOSTS = ['*']
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'online_shop',
-        'USER': 'abolfazl',
-        'PASSWORD': 'geek',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
-
