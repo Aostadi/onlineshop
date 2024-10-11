@@ -20,9 +20,9 @@ from online_shop.local_settings import *
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-
 # Application definition
-
+CSRF_TRUSTED_ORIGINS = ['https://abolfazl.org']
+CSRF_COOKIE_SECURE = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
