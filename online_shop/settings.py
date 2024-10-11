@@ -1,4 +1,3 @@
-
 import os.path
 from pathlib import Path
 from online_shop.local_settings import *
